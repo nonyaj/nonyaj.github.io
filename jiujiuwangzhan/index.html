@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>久久网站-经典老电影与怀旧影视资源库</title>
+    <meta name="description" content="久久网站致力于提供高清老电影、经典电视剧及怀旧综艺的在线观看与下载服务。收录大量80、90年代经典影片，打造专业的怀旧影视资料库。">
+    <meta name="keywords" content="久久网站,老电影,经典电影,怀旧影视,高清电影下载,国语电影">
+    <style>
+        :root {
+            --primary-color: #d32f2f;
+            --primary-hover: #b71c1c;
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --text-main: #ffffff;
+            --text-sub: #b0b0b0;
+            --border-color: #333;
+            --spacing-unit: 16px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .header-inner {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            display: flex;
+        }
+
+        .search-bar input {
+            flex: 1;
+            background: #2c2c2c;
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            color: var(--text-main);
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-bar button {
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background: var(--primary-hover);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: var(--spacing-unit);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--bg-dark)), url('https://picsum.photos/seed/oldmovie/1200/400') center/cover no-repeat;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .hero-content {
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            width: 100%;
+        }
+
+        .hero-tag {
+            background: var(--primary-color);
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .hero h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--text-sub);
+            max-width: 600px;
+        }
+
+        /* Section Styles */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+        }
+
+        .section-header h3 {
+            font-size: 20px;
+        }
+
+        .more-link {
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .more-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Grid Layouts */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--bg-card);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--primary-color);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #2c2c2c;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-title:hover {
+            color: var(--primary-color);
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: var(--text-sub);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-tags {
+            margin-top: 8px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .tag {
+            font-size: 10px;
+            padding: 2px 4px;
+            background: #333;
+            color: #aaa;
+            border-radius: 2px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .rank-list li {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .rank-num {
+            width: 24px;
+            height: 24px;
+            background: #333;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+
+        .rank-num.top-1 { background: #ffd700; color: #000; }
+        .rank-num.top-2 { background: #c0c0c0; color: #000; }
+        .rank-num.top-3 { background: #cd7f32; color: #000; }
+
+        .rank-info h4 {
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .rank-info p {
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-sub);
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .grid-4 { grid-template-columns: repeat(3, 1fr); }
+            .sidebar { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; height: auto; padding: 10px 0; gap: 10px; }
+            .search-bar { width: 100%; margin: 5px 0; }
+            nav ul { font-size: 12px; flex-wrap: wrap; justify-content: center; }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: 1fr; }
+            .hero { height: 250px; }
+            .hero h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">久久<span>网站</span></a>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索经典老电影、怀旧剧集...">
+                <button type="button">搜索</button>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">老电影</a></li>
+                    <li><a href="#">怀旧电视剧</a></li>
+                    <li><a href="#">综艺频道</a></li>
+                    <li><a href="#">下载专区</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Banner -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-tag">今日推荐</span>
+                <h2>经典重温：1994年奥斯卡获奖佳作</h2>
+                <p>感受电影艺术的巅峰魅力，重温那个纯真年代。高清修复版现已上线，提供国语配音与原声双版本。</p>
+            </div>
+        </section>
+
+        <!-- Main Content Area -->
+        <div class="content-wrapper" style="display: flex; gap: 20px;">
+            <div class="main-content" style="flex: 3;">
+                
+                <!-- Section 1: Hot Movies -->
+                <section>
+                    <div class="section-header">
+                        <h3>热门老电影</h3>
+                        <a href="#" class="more-link">查看更多 &raquo;</a>
+                    </div>
+                    <div class="grid-4">
+                        <article class="card">
+                            <img src="https://picsum.photos/seed/movie1/300/200" alt="电影海报" class="card-img">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="#">英雄本色</a></h4>
+                                <div class="card-meta">
+                                    <span>1986</span>
+                                    <span>杜琪峰</span>
+                                </div>
+                                <div class="card-tags">
+                                    <span class="tag">动作</span>
+                                    <span class="tag">经典</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <img src="https://picsum.photos/seed/movie2/300/200" alt="电影海报" class="card-img">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="#">大话西游</a></h4>
+                                <div class="card-meta">
+                                    <span>1995</span>
+                                    <span>周星驰</span>
+                                </div>
+                                <div class="card-tags">
+                                    <span class="tag">喜剧</span>
+                                    <span class="tag">爱情</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <img src="https://picsum.photos/seed/movie3/300/200" alt="电影海报" class="card-img">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="#">霸王别姬</a></h4>
+                                <div class="card-meta">
+                                    <span>1993</span>
+                                    <span>陈凯歌</span>
+                                </div>
+                                <div class="card-tags">
+                                    <span class="tag">剧情</span>
+                                    <span class="tag">文艺</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <img src="https://picsum.photos/seed/movie4/300/200" alt="电影海报" class="card-img">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="#">无间道</a></h4>
+                                <div class="card-meta">
+                                    <span>2002</span>
+                                    <span>刘伟强</span>
+                                </div>
+                                <div class="card-tags">
+                                    <span class="tag">警匪</span>
+                                    <span class="tag">悬疑</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Section 2: TV Series -->
+                <section style="margin-top: 40px;">
+                    <div class="section-header">
+                        <h3>怀旧电视剧</h3>
+                        <a href="#" class="more-link">查看更多 &raquo;</a>
+                    </div>
+                    <div class="grid-3">
+                        <article class="card">
+                            <img src="https://picsum.photos/seed/tv1/400/225" alt="电视剧海报" class="card-img">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="#">渴望</a></h4>
+                                <div class="card-meta">
+                                    <span>1990</span>
+                                    <span>家庭剧</span>
+                                </div>
+                                <p style="font-size: 12px; color: #888; margin-top: 5px;">中国第一部室内电视连续剧，引发万人空巷。</p>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <img src="https://picsum.photos/seed/tv2/400/225" alt="电视剧海报" class="card-img">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="#">西游记</a></h4>
+                                <div class="card-meta">
+                                    <span>1986</span>
+                                    <span>神话剧</span>
+                                </div>
+                                <p style="font-size: 12px; color: #888; margin-top: 5px;">重播次数最多的电视剧，童年记忆。</p>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <img src="https://picsum.photos/seed/tv3/400/225" alt="电视剧海报" class="card-img">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="#">北京人在纽约</a></h4>
+                                <div class="card-meta">
+                                    <span>1993</span>
+                                    <span>移民剧</span>
+                                </div>
+                                <p style="font-size: 12px; color: #888; margin-top: 5px;">深刻描绘海外华人的生存状态。</p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Section 3: Download Guide -->
+                <section style="margin-top: 40px;">
+                    <div class="section-header">
+                        <h3>软件下载与使用指南</h3>
+                        <a href="#" class="more-link">查看更多 &raquo;</a>
+                    </div>
+                    <div class="grid-3">
+                        <article class="card" style="padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                            <div style="font-size: 40px; margin-bottom: 10px;">🎬</div>
+                            <h4 class="card-title">本地播放器推荐</h4>
+                            <p style="font-size: 12px; color: var(--text-sub); margin: 10px 0;">支持MKV、AVI等多种格式，无损播放老电影原片。</p>
+                            <a href="#" style="color: var(--primary-color); font-size: 14px;">下载播放器 &rarr;</a>
+                        </article>
+                        <article class="card" style="padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                            <div style="font-size: 40px; margin-bottom: 10px;">💾</div>
+                            <h4 class="card-title">高清资源下载</h4>
+                            <p style="font-size: 12px; color: var(--text-sub); margin: 10px 0;">高速下载通道，提供1080P与4K修复版资源。</p>
+                            <a href="#" style="color: var(--primary-color); font-size: 14px;">开始下载 &rarr;</a>
+                        </article>
+                        <article class="card" style="padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                            <div style="font-size: 40px; margin-bottom: 10px;">🎧</div>
+                            <h4 class="card-title">经典原声合集</h4>
+                            <p style="font-size: 12px; color: var(--text-sub); margin: 10px 0;">收录80-90年代经典影视原声歌曲与插曲。</p>
+                            <a href="#" style="color: var(--primary-color); font-size: 14px;">在线收听 &rarr;</a>
+                        </article>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar" style="flex: 1;">
+                <div class="card" style="padding: 20px;">
+                    <h4 style="margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px;">网站公告</h4>
+                    <ul class="rank-list">
+                        <li style="border-bottom: none;">
+                            <div class="rank-info">
+                                <h4 style="font-size: 13px;">关于网站服务器升级维护通知</h4>
+                                <p style="margin-top: 4px;">2023-10-24</p>
+                            </div>
+                        </li>
+                        <li style="border-bottom: none;">
+                            <div class="rank-info">
+                                <h4 style="font-size: 13px;">新增《大话西游》高清修复版</h4>
+                                <p style="margin-top: 4px;">2023-10-22</p>
+                            </div>
+                        </li>
+                        <li style="border-bottom: none;">
+                            <div class="rank-info">
+                                <h4 style="font-size: 13px;">播放器V2.0版本更新说明</h4>
+                                <p style="margin-top: 4px;">2023-10-20</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card" style="padding: 20px;">
+                    <h4 style="margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px;">点击排行榜</h4>
+                    <ul class="rank-list">
+                        <li>
+                            <span class="rank-num top-1">1</span>
+                            <div class="rank-info">
+                                <h4>霸王别姬</h4>
+                                <p>12.5万次播放</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank-num top-2">2</span>
+                            <div class="rank-info">
+                                <h4>让子弹飞</h4>
+                                <p>10.8万次播放</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank-num top-3">3</span>
+                            <div class="rank-info">
+                                <h4>活着</h4>
+                                <p>9.2万次播放</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank-num">4</span>
+                            <div class="rank-info">
+                                <h4>泰坦尼克号</h4>
+                                <p>8.5万次播放</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="rank-num">5</span>
+                            <div class="rank-info">
+                                <h4>阿甘正传</h4>
+                                <p>7.9万次播放</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card" style="padding: 20px; background: #252525;">
+                    <h4 style="margin-bottom: 10px;">友情链接</h4>
+                    <div style="font-size: 12px; color: #888; line-height: 1.8;">
+                        <a href="#">怀旧影院</a> | 
+                        <a href="#">老歌金曲</a> | 
+                        <a href="#">影视资料馆</a> | 
+                        <a href="#">经典回顾</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">免责声明</a>
+                <a href="#">版权声明</a>
+                <a href="#">联系方式</a>
+                <a href="#">加入收藏</a>
+            </div>
+            <p class="copyright">
+                Copyright © 2005-2023 久久网站. All Rights Reserved.<br>
+                本站内容仅供学习交流使用，请于下载后24小时内删除。
+            </p>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</body>
+                      </html>
