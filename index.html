@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="人人网站 - 专业的人人信息聚合与社交服务平台，提供最新资讯、热点话题、社区互动及个性化推荐，连接每一位用户的精彩生活。">
+    <meta name="keywords" content="人人网站, 社交平台, 资讯聚合, 社区论坛, 热点话题, 在线交流">
+    <title>人人网站-专业信息聚合与社交服务平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --spacing-unit: 1rem;
+            --container-width: 1200px;
+            --header-height: 70px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout Utilities */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 5px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-title a {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Header */
+        header {
+            height: var(--header-height);
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            font-weight: 500;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -24px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            font-size: 0.95rem;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            color: var(--text-main);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Main Content Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* News Feed */
+        .news-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border-color: #cbd5e1;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .news-meta .avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #ddd;
+        }
+
+        .news-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .news-title a:hover {
+            color: var(--primary-color);
+        }
+
+        .news-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .news-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 1rem;
+        }
+
+        .news-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .news-actions button:hover {
+            background-color: #f1f5f9;
+            color: var(--text-main);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar-widget {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .hot-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .hot-item {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+        }
+
+        .hot-rank {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--border-color);
+            line-height: 1;
+            font-style: italic;
+        }
+
+        .hot-item:nth-child(1) .hot-rank { color: #ef4444; }
+        .hot-item:nth-child(2) .hot-rank { color: #f97316; }
+        .hot-item:nth-child(3) .hot-rank { color: #eab308; }
+
+        .hot-content h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            line-height: 1.4;
+        }
+
+        .hot-content h4:hover {
+            color: var(--primary-color);
+        }
+
+        .hot-content span {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Categories Grid */
+        .categories-section {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            text-align: center;
+            transition: background 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .category-card:hover {
+            background-color: white;
+            border-color: var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .category-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e293b;
+            color: #94a3b8;
+            padding: 4rem 0 2rem;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h2 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+            .hero-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            .section-title {
+                font-size: 1.25rem;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .header-actions .btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">人人<span>网站</span></a>
+            <nav class="nav-menu">
+                <a href="#" class="active">首页</a>
+                <a href="#">资讯动态</a>
+                <a href="#">热门话题</a>
+                <a href="#">社区论坛</a>
+                <a href="#">关于我们</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-outline">登录</button>
+                <button class="btn btn-primary">注册</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>连接每一个精彩瞬间，汇聚海量优质内容</h1>
+                    <p>人人网站致力于打造最活跃的中文社区，提供最新的行业资讯、深度评论与互动交流平台。在这里，你可以找到志同道合的朋友，分享生活点滴。</p>
+                    <div class="hero-tags">
+                        <span class="tag">热点追踪</span>
+                        <span class="tag">生活百科</span>
+                        <span class="tag">技术分享</span>
+                        <span class="tag">娱乐资讯</span>
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 1rem;">立即浏览</button>
+                        <button class="btn btn-outline" style="padding: 0.8rem 2rem; font-size: 1rem;">了解详情</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://picsum.photos/seed/community/600/400" alt="社区活动示意图">
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <div style="width: 40px; height: 40px; background: #e0e7ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-weight: bold;">1k+</div>
+                        <div>
+                            <div style="font-weight: bold; color: var(--text-main);">今日活跃用户</div>
+                            <div style="font-size: 0.8rem; color: var(--text-secondary);">实时在线人数统计</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Main Content Grid -->
+            <div class="main-grid">
+                <!-- News Feed -->
+                <section class="news-feed">
+                    <div class="section-title">
+                        <span>最新动态</span>
+                        <a href="#">查看更多 &rarr;</a>
+                    </div>
+
+                    <article class="news-card">
+                        <div class="news-meta">
+                            <img src="https://picsum.photos/seed/u1/50/50" alt="User Avatar" class="avatar">
+                            <span>科技前沿观察</span>
+                            <span>&bull;</span>
+                            <span>2小时前</span>
+                        </div>
+                        <h2 class="news-title"><a href="#">2024年互联网行业发展趋势深度解析：人人网站如何引领社区新变革</a></h2>
+                        <p class="news-excerpt">随着移动互联网的深入发展，用户对于高质量内容的需求日益增长。本文将探讨社区平台在内容分发机制上的创新尝试，以及如何通过技术手段提升用户体验...</p>
+                        <div class="news-footer">
+                            <div class="news-actions">
+                                <button><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg> 1.2k</button>
+                                <button><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg> 345</button>
+                                <button><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg> 分享</button>
+                            </div>
+                            <span>科技</span>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-meta">
+                            <img src="https://picsum.photos/seed/u2/50/50" alt="User Avatar" class="avatar">
+                            <span>生活百科</span>
+                            <span>&bull;</span>
+                            <span>5小时前</span>
+                        </div>
+                        <h2 class="news-title"><a href="#">居家生活指南：打造高效舒适的个人工作空间</a></h2>
+                        <p class="news-excerpt">远程办公已成为常态，一个良好的工作环境对效率至关重要。本文从人体工学椅的选择、灯光布置到桌面收纳，为您提供全方位的居家办公改造建议。</p>
+                        <div class="news-footer">
+                            <div class="news-actions">
+                                <button><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg> 856</button>
+                                <button><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg> 120</button>
+                                <button><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg> 分享</button>
+                            </div>
+                            <span>生活</span>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-meta">
+                            <img src="https://picsum.photos/seed/u3/50/50" alt="User Avatar" class="avatar">
+                            <span>数字娱乐</span>
+                            <span>&bull;</span>
+                            <span>8小时前</span>
+                        </div>
+                        <h2 class="news-title"><a href="#">年度最佳独立游戏盘点：那些值得你花时间体验的作品</a></h2>
+                        <p class="news-excerpt">今年的独立游戏市场异常火爆，涌现出了许多创意十足的作品。从复古像素风到独特的叙事体验，我们为您精选了五款不容错过的年度佳作。</p>
+                        <div class="news-footer">
+                            <div class="news-actions">
+                                <button><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg> 2.1k</button>
+                                <button><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg> 560</button>
+                                <button><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg> 分享</button>
+                            </div>
+                            <span>游戏</span>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">热门话题</h3>
+                        <div class="hot-list">
+                            <div class="hot-item">
+                                <span class="hot-rank">1</span>
+                                <div class="hot-content">
+                                    <h4><a href="#">人工智能对未来的影响</a></h4>
+                                    <span>讨论 5.2w</span>
+                                </div>
+                            </div>
+                            <div class="hot-item">
+                                <span class="hot-rank">2</span>
+                                <div class="hot-content">
+                                    <h4><a href="#">周末去哪儿玩？</a></h4>
+                                    <span>讨论 3.8w</span>
+                                </div>
+                            </div>
+                            <div class="hot-item">
+                                <span class="hot-rank">3</span>
+                                <div class="hot-content">
+                                    <h4><a href="#">职场沟通技巧分享</a></h4>
+                                    <span>讨论 2.1w</span>
+                                </div>
+                            </div>
+                            <div class="hot-item">
+                                <span class="hot-rank">4</span>
+                                <div class="hot-content">
+                                    <h4><a href="#">健康饮食新趋势</a></h4>
+                                    <span>讨论 1.9w</span>
+                                </div>
+                            </div>
+                            <div class="hot-item">
+                                <span class="hot-rank">5</span>
+                                <div class="hot-content">
+                                    <h4><a href="#">极简主义生活指南</a></h4>
+                                    <span>讨论 1.5w</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">推荐用户</h3>
+                        <div class="hot-list">
+                            <div class="hot-item">
+                                <img src="https://picsum.photos/seed/u4/50/50" alt="Avatar" class="avatar">
+                                <div class="hot-content">
+                                    <h4><a href="#">旅行家小王</a></h4>
+                                    <span>摄影达人</span>
+                                </div>
+                            </div>
+                            <div class="hot-item">
+                                <img src="https://picsum.photos/seed/u5/50/50" alt="Avatar" class="avatar">
+                                <div class="hot-content">
+                                    <h4><a href="#">极客阿强</a></h4>
+                                    <span>科技博主</span>
+                                </div>
+                            </div>
+                            <div class="hot-item">
+                                <img src="https://picsum.photos/seed/u6/50/50" alt="Avatar" class="avatar">
+                                <div class="hot-content">
+                                    <h4><a href="#">美食探店君</a></h4>
+                                    <span>吃货联盟</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%; margin-top: 1rem;">查看更多</button>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Categories Section -->
+            <section class="categories-section">
+                <div class="section-title">
+                    <span>浏览分类</span>
+                    <a href="#">全部分类 &rarr;</a>
+                </div>
+                <div class="category-grid">
+                    <a href="#" class="category-card">
+                        <div class="category-icon">📰</div>
+                        <h3>新闻资讯</h3>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="category-icon">💻</div>
+                        <h3>数码科技</h3>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="category-icon">🎮</div>
+                        <h3>电子游戏</h3>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="category-icon">🎬</div>
+                        <h3>影视娱乐</h3>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="category-icon">🎨</div>
+                        <h3>艺术设计</h3>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="category-icon">📚</div>
+                        <h3>读书学习</h3>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="category-icon">💰</div>
+                        <h3>财经商业</h3>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="category-icon">❤️</div>
+                        <h3>情感心理</h3>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>人人网站</h2>
+                    <p style="font-size: 0.9rem; line-height: 1.8;">
+                        我们致力于构建一个开放、包容、互助的互联网社区。在这里，每一个声音都被倾听，每一个创意都被尊重。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">联系方式</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>社区服务</h4>
+                    <ul>
+                        <li><a href="#">用户协议</a></li>
+                        <li><a href="#">社区规范</a></li>
+                        <li><a href="#">帮助中心</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">官方微博</a></li>
+                        <li><a href="#">用户社群</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 人人网站 版权所有. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+  </html>
